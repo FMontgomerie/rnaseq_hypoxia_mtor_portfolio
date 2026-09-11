@@ -1,5 +1,0 @@
-dirs <- c("data/raw", "data/processed", "scripts", "results/figures", "results/tables", "docs")
-lapply(dirs, dir.create, recursive = TRUE)
-r
-install.packages("renv")
-renv::init()

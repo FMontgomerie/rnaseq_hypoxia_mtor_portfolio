@@ -1,7 +1,0 @@
-"0",""
-"0","ggplot(pca_data, aes(x = PC1, y = PC2, color = oxygen, shape = drug)) +"
-"0","  geom_point(size = 3) +"
-"0","  xlab(paste0(""PC1: "", percentVar[1], ""% variance"")) +"
-"0","  ylab(paste0(""PC2: "", percentVar[2], ""% variance"")) +"
-"0","  theme_bw() +"
-"0","  labs(title = ""PCA colored by oxygen, shaped by drug"")"
