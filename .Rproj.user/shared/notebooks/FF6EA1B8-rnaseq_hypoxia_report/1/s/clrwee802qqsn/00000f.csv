@@ -1,0 +1,43 @@
+"0","res_hypoxia_MCF10A <- results(dds, name = ""oxygen_Hypoxia_vs_Normoxia"")"
+"0","res_hypoxia_MCF10A_shrunk <- lfcShrink(dds, coef = ""oxygen_Hypoxia_vs_Normoxia"", type = ""apeglm"")"
+"0","summary(res_hypoxia_MCF10A)"
+"1","
+"
+"1","out of 17910 with nonzero total read count
+"
+"1","adjusted p-value < 0.1
+"
+"1","LFC > 0 (up)       : 2965, 17%
+"
+"1","LFC < 0 (down)     : 2406, 13%
+"
+"1","outliers [1]       : 0, 0%
+"
+"1","low counts [2]     : 0, 0%
+"
+"1","(mean count < 2)
+"
+"1","[1] see 'cooksCutoff' argument of ?results
+"
+"1","[2] see 'independentFiltering' argument of ?results
+"
+"1","
+"
+"0","gene_info <- data.frame("
+"0","  full_id = rownames(dds),"
+"0","  ensembl_id = sapply(strsplit(rownames(dds), "",""), `[`, 1),"
+"0","  gene_symbol = sapply(strsplit(rownames(dds), "",""), `[`, 2),"
+"0","  biotype = sapply(strsplit(rownames(dds), "",""), `[`, 3)"
+"0",")"
+"0",""
+"0","volcano_df <- as.data.frame(res_hypoxia_MCF10A_shrunk)"
+"0","volcano_df$gene_symbol <- gene_info$gene_symbol[match(rownames(volcano_df), gene_info$full_id)]"
+"0","volcano_df$sig <- ifelse(!is.na(volcano_df$padj) & volcano_df$padj < 0.05 & abs(volcano_df$log2FoldChange) > 1,"
+"0","                          ""Significant"", ""Not significant"")"
+"0",""
+"0","ggplot(volcano_df, aes(x = log2FoldChange, y = -log10(pvalue), color = sig)) +"
+"0","  geom_point(alpha = 0.5, size = 1) +"
+"0","  scale_color_manual(values = c(""Significant"" = ""firebrick"", ""Not significant"" = ""grey70"")) +"
+"0","  theme_bw() +"
+"0","  labs(title = ""Hypoxia vs Normoxia (MCF10A, Total mRNA)"","
+"0","       x = ""log2 Fold Change (shrunk)"", y = ""-log10(p-value)"")"

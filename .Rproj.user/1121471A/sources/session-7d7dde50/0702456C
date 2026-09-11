@@ -1,0 +1,28 @@
+{
+    "id": "0702456C",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1789115744759.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "id": "9d43366ea976432887af8d2776e49e33",
+        "name": "gsea_result",
+        "title": "gsea_result",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 7143307332890734593,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1789115744759,
+    "read_only": false,
+    "read_only_alternatives": []
+}

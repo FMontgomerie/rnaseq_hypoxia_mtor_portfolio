@@ -1,0 +1,8 @@
+"0",""
+"0","top_hypoxia_genes <- volcano_df %>%"
+"0","  filter(!is.na(padj)) %>%"
+"0","  arrange(padj) %>%"
+"0","  dplyr::select(gene_symbol, log2FoldChange, padj) %>%"
+"0","  head(20)"
+"0",""
+"0","kable(top_hypoxia_genes, digits = 3)"
