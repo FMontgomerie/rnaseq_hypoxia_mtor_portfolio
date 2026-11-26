@@ -1,36 +1,34 @@
-# Bioscience PhD Computing Portfolio
+# RNA-seq differential expression analysis — hypoxia and mTOR inhibition
 
-Data analysis and computing portfolio prepared for PhD applications in biochemistry, molecular biology and cell biology.
+Part of a bioscience PhD computing portfolio (biochemistry, molecular biology, cell biology).
 
-## Projects
-
-### 1. RNA-seq differential expression analysis — hypoxia and mTOR inhibition
 Multi-factor RNA-seq analysis of hypoxia and mTOR inhibitor (PP242) treatment in a non-malignant (MCF10A) and a triple-negative breast cancer (MDA-MB-231) cell line, using DESeq2, pathway enrichment (GSEA) and reproducible R Markdown.
 
-**[View the full report](https://fmontgomerie.github.io/rnaseq_hypoxia_mtor_portfolio/rnaseq_hypoxia_mtor_analysis/rnaseq_hypoxia_report.html)**
-[Source code](rnaseq_hypoxia_mtor_analysis/rnaseq_hypoxia_report.Rmd)
+**[View the full report](https://fmontgomerie.github.io/rnaseq_hypoxia_mtor_portfolio/rnaseq_hypoxia_report.html)**
+[Source code](rnaseq_hypoxia_report.Rmd)
 
-### 2. Microscopy image analysis — nuclear translocation assay
-Quantification of FKHR-EGFP nuclear translocation in response to two PI3K inhibitors (Wortmannin, LY294002), using classical image segmentation (Otsu thresholding, watershed), dose-response curve fitting, and assay quality metrics (Z'-factor, V-factor), benchmarked against the published BBBC013 dataset.
+## Approach
 
-**[View the full notebook](https://github.com/FMontgomerie/rnaseq_hypoxia_mtor_portfolio/blob/main/microscopy_nuclear_translocation/nuclear_translocation_analysis.ipynb)**
-[Source code](microscopy_nuclear_translocation/nuclear_translocation_analysis.ipynb)
-
-### 3. Single-cell RNA-seq clustering and cell-type analysis
-*In progress.*
+1. Retrieve raw counts and sample metadata for GSE104193 from GEO, checked against the published experimental design.
+2. Build sample metadata and a multi-factor DESeq2 model (`~ cell_line + oxygen + drug + fraction + cell_line:oxygen + oxygen:fraction`), capturing cell line, oxygen, drug and polysome/sub-polysome fraction effects.
+3. QC the model (library sizes, PCA, dispersion estimates) before drawing any conclusions from it.
+4. Extract and visualise results for each contrast of interest, with shrinkage (apeglm) applied to fold changes.
+5. Run gene set enrichment analysis (GSEA) against MSigDB Hallmark gene sets to interpret the differential expression results at a pathway level.
+6. Manage the full R environment with `renv` so the analysis is reproducible from a fresh clone.
 
 ## Repository structure
 
 ```
 .
 ├── README.md
-├── rnaseq_hypoxia_mtor_analysis/            Project 1: RNA-seq (R)
-│   ├── rnaseq_hypoxia_report.Rmd            source
-│   ├── rnaseq_hypoxia_report.html           knitted report
-│   ├── data/                                raw data
-│   └── renv.lock                            R package versions
-└── microscopy_nuclear_translocation/        Project 2: image analysis (Python)
-    ├── nuclear_translocation_analysis.ipynb  notebook (source + report in one)
-    ├── data/                                 raw images
-    └── results/                              output figures/tables
+├── rnaseq_hypoxia_report.Rmd            source
+├── rnaseq_hypoxia_report.html           knitted report
+├── data/                                raw data (GEO counts and metadata)
+└── renv.lock                            R package versions
 ```
+
+## Related projects
+
+This is one part of a broader bioscience PhD computing portfolio. The other projects are in their own repositories:
+
+- [Microscopy image analysis — nuclear translocation assay](https://github.com/FMontgomerie/Nuclear_translocation_image_analysis)
